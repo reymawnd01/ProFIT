@@ -1,0 +1,36 @@
+<template>
+    <div class="slds-m-around_small">
+        <lightning-card variant="Narrow" title="Event Details" icon-name="standard:event">
+            <lightning-tabset variant="scoped" active-tab-value="event">
+                <lightning-tab label="Upcoming Event" value="event" onactive={handleUpcomingEvent}>
+                    <lightning-datatable 
+                    key-field="id"
+                    data={events}
+                    show-row-number-column
+                    hide-checkbox-column
+                    columns={columnsList}>
+                  </lightning-datatable>
+                </lightning-tab>
+
+          <lightning-tab label="Past Events" value="pastevents" onactive={handlePastEvent}>
+           <template if:true={pastevents}>
+            <lightning-datatable key-field="id" data={pastevents} 
+              show-row-number-column
+              hide-checkbox-column 
+              columns={columsListPast}>
+            </lightning-datatable>
+           </template>
+  
+           <template if:false={errors}>
+            <template if:false={columnsListPast}>
+            </template>
+           </template>
+          </lightning-tab>
+
+
+            </lightning-tabset>
+        </lightning-card>
+    </div>
+</template>
+
+  
